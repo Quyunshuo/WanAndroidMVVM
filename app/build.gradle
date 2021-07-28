@@ -88,8 +88,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     if (!ProjectBuildConfig.isAppMode) {
-        // 有业务组件时 把这个去掉 这里只是为了使用base里的依赖库
-        implementation project(path: ':lib_common')
+        implementation project(path: ':module_main')
     } else {
         implementation project(path: ':lib_common')
     }
