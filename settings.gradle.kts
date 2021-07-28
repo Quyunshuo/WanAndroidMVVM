@@ -1,5 +1,6 @@
 include(
     ":app",
     ":lib_base",
-    ":lib_common"
+    ":lib_common",
+    ":module_main"
 )

@@ -1,9 +1,19 @@
 package com.quyunshuo.wanandroid.common.constant
 
 /**
- * @Author: QuYunShuo
- * @Time: 2020/8/28
- * @Class: RoutePath
- * @Remark: 路由地址
+ * 路由地址
+ *
+ * @author Qu Yunshuo
+ * @since 2021/7/28 9:48 下午
  */
-object RouteUrl
+object RouteUrl {
+    /**
+     * Main模块
+     */
+    object Main {
+        /**
+         * 首页
+         */
+        const val MainActivity = "/module_main/MainActivity"
+    }
+}
