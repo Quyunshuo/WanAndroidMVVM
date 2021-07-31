@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--  主题色  -->
-    <color name="common_theme">#00BCD4</color>
+    <color name="common_theme">#566AFF</color>
+    <!--  次要主题色  -->
+    <color name="common_minor_theme">#BCC4EC</color>
+    <!--  背景色  -->
+    <color name="common_background">#EFEEEE</color>
 </resources>

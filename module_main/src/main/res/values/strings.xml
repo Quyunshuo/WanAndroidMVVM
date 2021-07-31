@@ -1,1 +1,5 @@
-<resources></resources>
+<resources>
+    <string name="main_nav_home">首页</string>
+    <string name="main_nav_subscribe_account">订阅号</string>
+    <string name="main_nav_me">个人中心</string>
+</resources>

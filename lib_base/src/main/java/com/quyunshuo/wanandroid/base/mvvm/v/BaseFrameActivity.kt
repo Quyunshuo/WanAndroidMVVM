@@ -59,7 +59,10 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : BaseViewModel> : AppComp
      * 子类需要自定义时重写该方法即可
      * @return Unit
      */
-    open fun setStatusBar() {}
+    open fun setStatusBar() {
+        BarUtils.transparentStatusBar(this)
+        BarUtils.setStatusBarLightMode(this, true)
+    }
 
     /**
      * 网络类型更改回调

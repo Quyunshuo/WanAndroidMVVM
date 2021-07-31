@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/vNavHome"
+        android:enabled="true"
+        android:icon="@drawable/main_nav_home_selector"
+        android:title="@string/main_nav_home" />
+    <item
+        android:id="@+id/vNavSubscribeAccount"
+        android:enabled="true"
+        android:icon="@drawable/main_nav_subscribe_account_selector"
+        android:title="@string/main_nav_subscribe_account" />
+    <item
+        android:id="@+id/vNavMe"
+        android:enabled="true"
+        android:icon="@drawable/main_nav_me_selector"
+        android:title="@string/main_nav_me" />
+</menu>
