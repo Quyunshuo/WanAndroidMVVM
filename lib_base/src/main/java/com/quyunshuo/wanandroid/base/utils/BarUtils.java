@@ -196,6 +196,12 @@ public final class BarUtils {
         view.setTag(KEY_OFFSET, true);
     }
 
+    private static void addMarginTopEqualStatusBarHeight(@NonNull final Window window) {
+        View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
+        if (withTag == null) return;
+        addMarginTopEqualStatusBarHeight(withTag);
+    }
+
     /**
      * Subtract the top margin size equals status bar's height for view.
      *
@@ -211,12 +217,6 @@ public final class BarUtils {
                 layoutParams.rightMargin,
                 layoutParams.bottomMargin);
         view.setTag(KEY_OFFSET, false);
-    }
-
-    private static void addMarginTopEqualStatusBarHeight(@NonNull final Window window) {
-        View withTag = window.getDecorView().findViewWithTag(TAG_OFFSET);
-        if (withTag == null) return;
-        addMarginTopEqualStatusBarHeight(withTag);
     }
 
     private static void subtractMarginTopEqualStatusBarHeight(@NonNull final Window window) {

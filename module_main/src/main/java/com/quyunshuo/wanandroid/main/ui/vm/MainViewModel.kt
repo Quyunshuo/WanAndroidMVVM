@@ -21,14 +21,14 @@ class MainViewModel @Inject constructor(private val mRepository: MainRepository)
      * 子页面集合
      */
     val fragments: List<Fragment> = listOf(
-        (ARouter.getInstance()
+        ARouter.getInstance()
             .build(RouteUrl.Home.HomeFragment)
-            .navigation()) as Fragment,
-        (ARouter.getInstance()
+            .navigation() as Fragment,
+        ARouter.getInstance()
             .build(RouteUrl.SubscribeAccount.SubscribeAccountFragment)
-            .navigation()) as Fragment,
-        (ARouter.getInstance()
+            .navigation() as Fragment,
+        ARouter.getInstance()
             .build(RouteUrl.Me.MeFragment)
-            .navigation()) as Fragment
+            .navigation() as Fragment
     )
 }
