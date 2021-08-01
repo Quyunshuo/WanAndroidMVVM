@@ -1,4 +1,4 @@
-package com.quyunshuo.wanandroid.main.ui
+package com.quyunshuo.wanandroid.main.ui.activity
 
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope

@@ -1,5 +1,4 @@
 apply from: '../base_module.gradle'
-apply plugin: 'kotlin-android'
 
 android {
     resourcePrefix "main_"
