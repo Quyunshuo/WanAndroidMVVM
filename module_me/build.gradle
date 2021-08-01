@@ -1,5 +1,5 @@
 apply from: '../base_module.gradle'
 
 android {
-    resourcePrefix "main_"
+    resourcePrefix "me_"
 }

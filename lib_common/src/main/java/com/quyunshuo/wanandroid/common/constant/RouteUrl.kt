@@ -16,4 +16,37 @@ object RouteUrl {
          */
         const val MainActivity = "/module_main/MainActivity"
     }
+
+    /**
+     * 首页模块
+     */
+    object Home {
+
+        /**
+         * 首页Fragment
+         */
+        const val HomeFragment = "/module_home/HomeFragment"
+    }
+
+    /**
+     * 订阅号模块
+     */
+    object SubscribeAccount {
+
+        /**
+         * 订阅号Fragment
+         */
+        const val SubscribeAccountFragment = "/module_subscribe_account/SubscribeAccountFragment"
+    }
+
+    /**
+     * 个人中心和更多模块
+     */
+    object Me {
+
+        /**
+         * 个人中心和更多Fragment
+         */
+        const val MeFragment = "/module_me/MeFragment"
+    }
 }

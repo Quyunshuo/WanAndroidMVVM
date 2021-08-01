@@ -89,6 +89,9 @@ dependencies {
 
     if (!ProjectBuildConfig.isAppMode) {
         implementation project(path: ':module_main')
+        implementation project(path: ':module_home')
+        implementation project(path: ':module_subscribe_account')
+        implementation project(path: ':module_me')
     } else {
         implementation project(path: ':lib_common')
     }
