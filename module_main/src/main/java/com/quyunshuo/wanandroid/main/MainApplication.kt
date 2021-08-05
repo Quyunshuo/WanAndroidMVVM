@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.google.auto.service.AutoService
 import com.quyunshuo.wanandroid.base.app.ApplicationLifecycle
-import com.quyunshuo.wanandroid.base.app.InitDepend
 
 /**
  * Main模块的伪Application
@@ -33,11 +32,10 @@ class MainApplication : ApplicationLifecycle {
     override fun onTerminate(application: Application) {}
 
     /**
-     * 需要立即进行初始化的放在这里进行并行初始化
-     * 需要必须在主线程初始化的放在[InitDepend.mainThreadDepends],反之放在[InitDepend.workerThreadDepends]
-     * @return InitDepend 初始化方法集合
+     * 主线程前台初始化
+     * @return MutableList<() -> String> 初始化方法集合
      */
-    override fun initByFrontDesk(): InitDepend = InitDepend(mutableListOf(), mutableListOf())
+    override fun initByFrontDesk(): MutableList<() -> String> = mutableListOf()
 
     /**
      * 不需要立即初始化的放在这里进行后台初始化
