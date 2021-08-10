@@ -1,5 +1,13 @@
+import com.quyunshuo.wanandroid.buildsrc.DependencyConfig
+
 apply from: '../base_module.gradle'
 
 android {
     resourcePrefix "home_"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation DependencyConfig.GitHub.Banner
 }

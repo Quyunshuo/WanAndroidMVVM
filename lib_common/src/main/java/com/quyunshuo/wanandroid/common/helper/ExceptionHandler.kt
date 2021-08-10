@@ -15,15 +15,20 @@ import com.quyunshuo.wanandroid.common.helper.ResponseExceptionEnum as Exception
  * 使用方式为：进行统一处理的异常进行抛出[ResponseEmptyException]，未进行处理的抛出[ResponseException]
  *
  * @param code Int code码
+ * @param msg Int 后台返回的msg
  * @throws ResponseException 未进行处理的异常会进行抛出，让ViewModel去做进一步处理
  */
 @Throws(ResponseException::class)
-fun responseExceptionHandler(code: Int) {
+suspend fun responseCodeExceptionHandler(code: Int, msg: String) {
     // 进行异常的处理
     when (code) {
-        ExceptionType.INTERNAL_SERVER_ERROR.getCode() -> {
-            toast(ExceptionType.INTERNAL_SERVER_ERROR.getMessage())
+        ExceptionType.NOT_LOGIN_ERROR.getCode() -> {
+            toast(ExceptionType.NOT_LOGIN_ERROR.getMessage())
             throw ResponseEmptyException()
+        }
+        ExceptionType.SUCCESS.getCode() ->{ }
+        else -> {
+            throw ResponseException(ExceptionType.ERROR, msg)
         }
     }
 }
