@@ -21,9 +21,12 @@ import com.quyunshuo.wanandroid.base.utils.ViewRecreateHelper
  */
 abstract class BaseFrameFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment(), FrameView<VB> {
 
-    protected val mBinding: VB by lazy(mode = LazyThreadSafetyMode.NONE) {
-        BindingReflex.reflexViewBinding(javaClass, layoutInflater)
-    }
+    /**
+     * 私有的 ViewBinding 此写法来自 Google Android 官方
+     */
+    private var _binding: VB? = null
+
+    protected val mBinding get() = _binding!!
 
     protected abstract val mViewModel: VM
 
@@ -37,7 +40,8 @@ abstract class BaseFrameFragment<VB : ViewBinding, VM : BaseViewModel> : Fragmen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return mBinding.root
+        _binding = BindingReflex.reflexViewBinding(javaClass, layoutInflater)
+        return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,6 +79,11 @@ abstract class BaseFrameFragment<VB : ViewBinding, VM : BaseViewModel> : Fragmen
      */
     private class FragmentStatusHelper(savedInstanceState: Bundle? = null) :
         ViewRecreateHelper(savedInstanceState)
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onDestroy() {
         if (javaClass.isAnnotationPresent(EventBusRegister::class.java)) EventBusUtils.unRegister(
