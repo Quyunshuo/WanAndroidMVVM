@@ -25,6 +25,7 @@ dependencies {
     api project(path: ':lib_base')
 
     api DependencyConfig.JetPack.HiltCore
+    api DependencyConfig.GitHub.Neumorphism
 
     kapt DependencyConfig.GitHub.ARouteCompiler
     kapt DependencyConfig.GitHub.EventBusAPT

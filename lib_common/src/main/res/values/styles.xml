@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/common_theme</item>
         <item name="colorPrimaryDark">@color/common_theme</item>
         <item name="colorAccent">@color/common_theme</item>
+
+        <item name="android:windowBackground">@color/common_background</item>
+        <item name="android:navigationBarColor">@color/common_background</item>
     </style>
 
 </resources>
