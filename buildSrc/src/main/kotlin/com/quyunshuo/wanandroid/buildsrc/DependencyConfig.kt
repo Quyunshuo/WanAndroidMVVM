@@ -56,6 +56,7 @@ object DependencyConfig {
         const val AutoService = "1.0"                       // 自动生成SPI暴露服务文件
         const val Coil = "1.3.0"                            // Kotlin图片加载框架
         const val Banner = "3.5.3"                          // Banner
+        const val Neumorphism = "0.3.0"                     // 立体View库
 
         // 第三方SDK--------------------------------------------------------------
         const val TencentBugly = "3.3.9"                    // 腾讯Bugly 异常上报
@@ -158,6 +159,7 @@ object DependencyConfig {
         const val CoilSVG = "io.coil-kt:coil-svg:${Version.Coil}"
         const val CoilVideo = "io.coil-kt:coil-video:${Version.Coil}"
         const val Banner = "com.github.zhpanvip:bannerviewpager:${Version.Banner}"
+        const val Neumorphism = "com.github.fornewid:neumorphism:${Version.Neumorphism}"
     }
 
     /**

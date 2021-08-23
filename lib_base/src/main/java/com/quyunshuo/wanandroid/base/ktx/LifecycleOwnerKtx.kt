@@ -22,6 +22,9 @@ import androidx.lifecycle.LiveData
  * @param action action: (t: T) -> Unit 处理订阅内容的方法
  * @return Unit
  */
-fun <T> LifecycleOwner.observeLiveData(liveData: LiveData<T>, action: (t: T) -> Unit) {
+inline fun <T> LifecycleOwner.observeLiveData(
+    liveData: LiveData<T>,
+    crossinline action: (t: T) -> Unit
+) {
     liveData.observe(this, { it?.let { t -> action(t) } })
 }
