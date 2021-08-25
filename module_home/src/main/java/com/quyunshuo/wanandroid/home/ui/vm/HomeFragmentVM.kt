@@ -37,7 +37,17 @@ class HomeFragmentVM @Inject constructor(private val mRepo: HomeFragmentRepo) : 
     /**
      * 文章列表数据源
      */
-    val articleListLD = MutableLiveData<MutableList<ArticleBean>>()
+    val articleList = mutableListOf<ArticleBean>()
+
+    /**
+     * 文章列表数据加载 first:是否是加载更多、second:加载更多是否成功
+     */
+    val articleLoadLD = MutableLiveData<Pair<Boolean, Boolean>>()
+
+    /**
+     * 是否已经加载了全部
+     */
+    val isLoadAllLD = MutableLiveData<Boolean>()
 
     /**
      * 获取 banner 数据
@@ -57,14 +67,19 @@ class HomeFragmentVM @Inject constructor(private val mRepo: HomeFragmentRepo) : 
         viewModelScope.launch(Dispatchers.IO) {
             mRepo.getArticleData(mCurrArticlePage)
                 .catch {
-                    Log.d("qqq", "catch: $it.message")
+                    if (mCurrArticlePage != 0) {
+                        articleLoadLD.postValue(Pair(first = true, second = false))
+                    }
                 }
                 .collect {
-                    val list = articleListLD.value ?: mutableListOf()
-                    list.addAll(it.articleList)
-                    articleListLD.postValue(list)
+                    articleList.addAll(it.articleList)
+                    if (mCurrArticlePage == 0) {
+                        articleLoadLD.postValue(Pair(first = false, second = false))
+                    } else {
+                        articleLoadLD.postValue(Pair(first = true, second = true))
+                    }
                     mCurrArticlePage = it.curPage
-                    Log.d("qqq", "getArticleData: $it.")
+                    if (it.pageCount == it.curPage) isLoadAllLD.postValue(true)
                 }
         }
     }

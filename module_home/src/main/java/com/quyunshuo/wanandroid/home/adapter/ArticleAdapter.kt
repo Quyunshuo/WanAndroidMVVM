@@ -1,6 +1,7 @@
 package com.quyunshuo.wanandroid.home.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.quyunshuo.wanandroid.home.R
 import com.quyunshuo.wanandroid.home.bean.ArticleBean
@@ -13,7 +14,7 @@ import javax.inject.Inject
  * @since 2021/8/16 11:26 下午
  */
 class ArticleAdapter @Inject constructor() :
-    BaseQuickAdapter<ArticleBean, BaseViewHolder>(R.layout.home_item_article) {
+    BaseQuickAdapter<ArticleBean, BaseViewHolder>(R.layout.home_item_article), LoadMoreModule {
 
     override fun convert(holder: BaseViewHolder, item: ArticleBean) {
         // 是否置顶文章

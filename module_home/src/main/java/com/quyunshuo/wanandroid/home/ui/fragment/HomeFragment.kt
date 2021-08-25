@@ -1,6 +1,5 @@
 package com.quyunshuo.wanandroid.home.ui.fragment
 
-import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -10,7 +9,6 @@ import com.quyunshuo.wanandroid.common.ui.BaseFragment
 import com.quyunshuo.wanandroid.home.R
 import com.quyunshuo.wanandroid.home.adapter.ArticleAdapter
 import com.quyunshuo.wanandroid.home.adapter.BannerAdapter
-import com.quyunshuo.wanandroid.home.bean.ArticleBean
 import com.quyunshuo.wanandroid.home.bean.BannerBean
 import com.quyunshuo.wanandroid.home.databinding.HomeFragmentHomeBinding
 import com.quyunshuo.wanandroid.home.ui.vm.HomeFragmentVM
@@ -49,6 +47,15 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeFragmentVM>() {
         // 文章适配器
         articleAdapter.apply {
             setOnItemClickListener { adapter, view, position -> }
+
+        }
+        articleAdapter.loadMoreModule.apply {
+            // 开启加载更多
+            isEnableLoadMore = true
+            // 不自动加载
+            isAutoLoadMore = false
+            // 加载更多监听
+            setOnLoadMoreListener { mViewModel.getArticleData() }
         }
         vArticleRv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -58,7 +65,8 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeFragmentVM>() {
 
     override fun initObserve() {
         observeLiveData(mViewModel.bannersLD, ::processBanners)
-        observeLiveData(mViewModel.articleListLD, ::processArticleData)
+        observeLiveData(mViewModel.articleLoadLD, ::processArticleData)
+        mViewModel.isLoadAllLD.observe(this, { articleAdapter.loadMoreModule.loadMoreEnd(false) })
     }
 
     override fun initRequestData() {
@@ -77,14 +85,21 @@ class HomeFragment : BaseFragment<HomeFragmentHomeBinding, HomeFragmentVM>() {
 
     /**
      * 处理文章数据
-     * @param articles MutableList<ArticleBean>
+     * @param data Pair<Boolean, Boolean>
      */
-    @SuppressLint("NotifyDataSetChanged")
-    private fun processArticleData(articles: MutableList<ArticleBean>) {
-        if (articleAdapter.data === articles) {
-            articleAdapter.notifyDataSetChanged()
+    private fun processArticleData(data: Pair<Boolean, Boolean>) {
+        if (data.first) {
+            // 加载更多
+            articleAdapter.loadMoreModule.apply {
+                if (data.second) {
+                    loadMoreComplete()
+                } else {
+                    loadMoreFail()
+                }
+            }
         } else {
-            articleAdapter.setNewInstance(articles)
+            // 首次加载
+            articleAdapter.setNewInstance(mViewModel.articleList)
         }
     }
 }
